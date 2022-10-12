@@ -1,29 +1,36 @@
 import os
 
+
+global ypath
+
+
 def texts():
-    inpath = input("请输入需要处理的文件：")
-    infile = open(inpath, "rb")
-    outfile = open(os.path.dirname(inpath)+"2.txt", "wb")
+    global ypath
+    ypath = input("请输入需要处理的文件：")
+    infile = open(ypath, "rb")
+    outfile = open(os.path.dirname(ypath)+"2.txt", "w")
     for eachline in infile.readlines():
-        lines = str(eachline, encoding="utf-8").split(' ') 
+        lines = str(eachline, encoding="utf-8").split(' ')
         n = 0
         for temp in lines:
             n = n+1
             if n % 2 == 0:
-                outfile.write(bytes(temp, encoding="utf-8")+b'\n')
+                outfile.write(temp+'\n')
             else:
-                outfile.write(bytes(temp, encoding="utf-8")+b'')
+                outfile.write(temp+'')
 
     infile.close()
     outfile.close()
 
 
 def textz():
-    infile = open("E:\\2.txt", "rb")
-    outfile = open("E:\\3.txt", "wb")
+    global ypath
+    infile = open(os.path.dirname(ypath)+"2.txt", "rb")
+    outfile = open(os.path.dirname(ypath)+"3.txt", "w")
     for eachline in infile.readlines():
         temp = str(int(str(eachline, encoding="utf-8"), 16))
-        outfile.write(bytes(temp, encoding="utf-8")+b'\n')
+        print(temp)
+        outfile.write(temp+'\n')
 
 
 texts()
